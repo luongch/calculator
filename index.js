@@ -145,7 +145,7 @@ const createRow = () => {
 }
 
 function evaluateAction(button) {
-    lastInput = numPadObjects[button.value];
+    let lastInput = numPadObjects[button.value];
             switch(lastInput.type) {
                 case "clear":
                     clearAll();
@@ -161,7 +161,7 @@ function evaluateAction(button) {
                         displayTotal(num1);
                     }
                     else {
-                        getTotal();
+                        getTotal(); 
                     }
                     break;
                 case 'operator':
@@ -194,6 +194,11 @@ const addEvents = () => {
     });
 }
 
+const handleTotalAfter = () => {
+    num1 = total
+    op = null
+    num2 = ""
+}
 const getTotal = () => {
     total = operator(op,parseInt(num1),parseInt(num2));
     if(total == Infinity) {
@@ -201,6 +206,7 @@ const getTotal = () => {
     }
     else {
         displayTotal(total)
+        handleTotalAfter()
     }
     
 }
@@ -226,8 +232,6 @@ const displayTotal = (value) => {
 }
 
 const clearAll = () => {
-    lastInput = "";
-    input = ""
     total = 0;
     num1 = "";
     op = null;
@@ -246,9 +250,6 @@ const deleteLast = () => {
     displayInput()
 }
 
-
-let lastInput = "";
-let input = ""
 let total = 0;
 let num1 = "";
 let op = null;
@@ -258,7 +259,5 @@ setupNumPad();
 addEvents();
 
 //todo list
-//display message when trying to divide by 0
-//if you have num1, an operator, and num2, when you press another op it will do the calculation and then get it ready for the next operator
 //set up the decimal button
 //add keyboard support
