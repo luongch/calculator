@@ -163,27 +163,39 @@ function evaluateAction(button) {
                     }
                     else {
                         getTotal(); 
+                        lastActionWasTotal = true;
                     }
                     break;
                 case 'operator':
-                    if(isAllValuesFilled()) {
+                    if(total !== "" && num1 === "") {
+                        //if there is a total and the next action was an operator set num1
+                        num1 = totalPlaceHolder;
+                    }
+                    else if(isAllValuesFilled()) {
                         getTotal();
                     }
-                    if(num1 === "") {
+                    else if(num1 === "") {
                         num1 = 0;
                     }
                     op = lastInput.value;
+                    lastActionWasTotal = false;
                     break;
                 case "number":
+                    if(lastActionWasTotal) {
+                        clearAll();
+                        lastActionWasTotal = false;
+                    }
                     if(op != null) {
                         num2 += lastInput.value
                     }
                     else {
                         num1 += lastInput.value
                     }
+                    lastActionWasTotal = false;
                     break;
                 case "decimal": {
                     addDecimal();
+                    lastActionWasTotal = false;
                     break;
                 }
             }
@@ -235,9 +247,9 @@ const addEvents = () => {
 }
 
 const handleTotalAfter = () => {
-    num1 = total
-    op = null
-    num2 = ""
+    num1 = total;
+    op = null;
+    num2 = "";
 }
 const getTotal = () => {
     total = operator(op,parseFloat(num1),parseFloat(num2));
@@ -277,6 +289,7 @@ const clearAll = () => {
     op = null;
     num2 = "";
     displayTotal(0)
+    lastActionWasTotal = false;
 }
 
 const deleteLast = () => {
@@ -288,12 +301,14 @@ const deleteLast = () => {
         num1 = num1.slice(0,-1);
     }
     displayInput()
+    lastActionWasTotal = false;
 }
 
 let total = 0;
 let num1 = "";
 let op = null;
 let num2 = "";
+let lastActionWasTotal = false;
 
 setupNumPad();
 addEvents();
