@@ -22,11 +22,13 @@ body {
     font-size: 25px;
     height:25px;
     margin-left: auto;
+    overflow: hidden;
 }
 .total {
     flex-grow: 2;
     font-size: 75px;
     margin-left: auto;
+    overflow: hidden;
 }
 .calculator {
     display: flex;

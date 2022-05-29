@@ -280,7 +280,10 @@ const displayInput = () => {
 
 const displayTotal = (value) => {
     let totalDiv = document.querySelector('.total');
-    totalDiv.innerHTML = value;
+
+
+
+    totalDiv.innerHTML = value % 1 === 0 ? value : value.toFixed(2);
 }
 
 const clearAll = () => {
