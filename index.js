@@ -154,7 +154,10 @@ function evaluateAction(button) {
                     deleteLast();
                     break;
                 case "equals":
-                    if(num1 != "" && op == null && num2 == "") {
+                    if(num1 == "" && op == null && num2 =="") {
+                        displayTotal(0)
+                    }
+                    else if((num1 != "" || op != null) && num2 == "") {
                         displayTotal(num1);
                     }
                     else {
@@ -248,8 +251,6 @@ setupNumPad();
 addEvents();
 
 //todo list
-//if you only enter one number and press = it should give you num1
-//if you have num1 and an operator, when you press = it should give you num1
 //display message when trying to divide by 0
 //if you have num1, an operator, and num2, when you press another op it will do the calculation and then get it ready for the next operator
 //set up the decimal button
