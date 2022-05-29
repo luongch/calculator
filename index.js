@@ -110,6 +110,7 @@ let numPadObjects = {
     }
 };
 let numPadOptions = [7,8,9,"/", 4,5,6,"*", 1,2,3,"-",".",0,"=","+"]
+
 const setupNumPad = () => {
     let container = document.querySelector(".numPad");
     let row = createRow();
@@ -154,7 +155,7 @@ function evaluateAction(button) {
                     deleteLast();
                     break;
                 case "equals":
-                    if(num1 == "" && op == null && num2 =="") {
+                    if(isAllValuesEmpty()) {
                         displayTotal(0)
                     }
                     else if((num1 != "" || op != null) && num2 == "") {
@@ -165,6 +166,9 @@ function evaluateAction(button) {
                     }
                     break;
                 case 'operator':
+                    if(isAllValuesEmpty()) {
+                        getTotal();
+                    }
                     if(num1 === "") {
                         num1 = 0;
                     }
@@ -177,13 +181,46 @@ function evaluateAction(button) {
                     else {
                         num1 += lastInput.value
                     }
-                default:
-                    console.log("decimal not implmented yet")
                     break;
+                case "decimal": {
+                    addDecimal();
+                    break;
+                }
             }
             displayInput();
 }
 
+const isAllValuesEmpty = () => {
+    return num1 !== "" && op !== null && num2 !== "";
+}
+const addDecimal = () => {
+    //if there is an operator add to num2
+    if(op === null) {
+        if(num1 === "") {
+            num1 = 0;
+        }
+        //check if a decimal already exists
+        if(num1.toString().includes('.')) {
+            return;
+        }
+        else {
+            num1 += '.';
+        }
+        
+    }
+    else {
+        if(num2 === "") {
+            num2 = 0;
+        }
+        if(num2.toString().includes('.')) {
+            return;
+        }
+        else {
+            num2 += '.';
+        }
+        
+    }
+}
 const addEvents = () => {
     let buttons = document.querySelectorAll("button")
     
