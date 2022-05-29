@@ -10,12 +10,22 @@ body {
 
 
 .display {
-    /* display: inline-block; */
-    background-color: red;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
     width: 100%;
-    /* width: 90%; */
     height: 20%;
-    /* margin: 10px; */
+}
+.input {
+    flex-grow: 1;
+    font-size: 25px;
+    height:25px;
+    margin-left: auto;
+}
+.total {
+    flex-grow: 2;
+    font-size: 75px;
+    margin-left: auto;
 }
 .calculator {
     display: flex;
@@ -24,6 +34,7 @@ body {
     background-color: grey;
     width: 500px;
     height: 600px;
+    border: thick solid black;
 }
 .numPad {
     background-color: blue;
@@ -49,4 +60,7 @@ body {
 }
 .clear>button, .delete>button {
     flex-grow:1;
+}
+button {
+    font-size: 32px;
 }

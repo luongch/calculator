@@ -34,11 +34,6 @@ const operator = (oper, num1, num2) => {
     }
 }
 
-console.log(operator('+',1,2))
-console.log(operator('-',1,2))
-console.log(operator('*',1,2))
-console.log(operator('/',1,2))
-
 let numPadObjects = {
     7:{
         value: 7,
@@ -105,6 +100,10 @@ let numPadObjects = {
         value: '+',
         type: "operator"
     },
+    'clear': {
+        value: 'clear',
+        type: 'clear'
+    }
 };
 let numPadOptions = [7,8,9,"/", 4,5,6,"*", 1,2,3,"-",".",0,"=","+"]
 const setupNumPad = () => {
@@ -142,6 +141,11 @@ const addEvents = () => {
         button.addEventListener("click", function(){
             lastInput = numPadObjects[button.value];
             switch(lastInput.type) {
+                case "clear":
+                    clearAll();
+                    break;
+                case "delete":
+                    break;
                 case "equals":
                     getTotal();
                     break;
@@ -156,9 +160,8 @@ const addEvents = () => {
                         num1 += lastInput.value
                     }
                 default:
-                    text = "opps something went wrong"
+                    console.log("decimal not implmented yet")
                     break;
-                    
             }
             displayInput();
         });
@@ -175,8 +178,7 @@ const isOperator = (value) => {
 
 const getTotal = () => {
     total = operator(op,parseInt(num1),parseInt(num2));
-    let totalDiv = document.querySelector('.total');
-    totalDiv.innerHTML = total;
+    displayTotal(total)
 }
 
 const displayInput = () => {
@@ -192,6 +194,21 @@ const displayInput = () => {
         text += num2;
     }
     inputDiv.innerHTML = text;
+}
+
+const clearAll = () => {
+    lastInput = "";
+    input = ""
+    total = 0;
+    num1 = "";
+    op = null;
+    num2 = "";
+    displayTotal(0)
+}
+
+const displayTotal = (value) => {
+    let totalDiv = document.querySelector('.total');
+    totalDiv.innerHTML = value;
 }
 
 let lastInput = "";
