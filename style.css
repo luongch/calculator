@@ -32,8 +32,21 @@ body {
     display: flex;
     flex-direction: column;
 }
-.row1 {
+.row {
     display: flex;
-    justify-content: space-evenly;
     background-color: green;
+    flex-grow: 1;
+}
+.numPadOption{
+    flex-grow: 1;
+    width: 125px;
+}
+
+.clear, .delete {
+    display: flex;
+    flex-grow:1;
+    width: 250px;
+}
+.clear>button, .delete>button {
+    flex-grow:1;
 }
