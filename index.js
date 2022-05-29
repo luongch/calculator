@@ -144,12 +144,8 @@ const createRow = () => {
     return row;
 }
 
-const addEvents = () => {
-    let buttons = document.querySelectorAll("button")
-    
-    buttons.forEach(button => {
-        button.addEventListener("click", function(){
-            lastInput = numPadObjects[button.value];
+function evaluateAction(button) {
+    lastInput = numPadObjects[button.value];
             switch(lastInput.type) {
                 case "clear":
                     clearAll();
@@ -158,7 +154,13 @@ const addEvents = () => {
                     deleteLast();
                     break;
                 case "equals":
-                    getTotal();
+                    if(num1 != "" && op == null && num2 == "") {
+                        displayTotal(num1);
+                    }
+                    else {
+                        getTotal();
+                    }
+                    
                     break;
                 case 'operator':
                     //if it's an op check to see if the num is empty if it is set it to 0
@@ -176,6 +178,14 @@ const addEvents = () => {
                     break;
             }
             displayInput();
+}
+
+const addEvents = () => {
+    let buttons = document.querySelectorAll("button")
+    
+    buttons.forEach(button => {
+        button.addEventListener("click", function(){
+            evaluateAction(button) //why can't I just pass in the function? it has to be wrapped to work
         });
     });
 }
