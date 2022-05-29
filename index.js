@@ -240,7 +240,7 @@ const handleTotalAfter = () => {
     num2 = ""
 }
 const getTotal = () => {
-    total = operator(op,parseInt(num1),parseInt(num2));
+    total = operator(op,parseFloat(num1),parseFloat(num2));
     if(total == Infinity) {
         displayTotal("Cannot divide by 0")
     }
@@ -299,5 +299,4 @@ setupNumPad();
 addEvents();
 
 //todo list
-//set up the decimal button
 //add keyboard support
