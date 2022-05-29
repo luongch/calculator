@@ -103,6 +103,10 @@ let numPadObjects = {
     'clear': {
         value: 'clear',
         type: 'clear'
+    },
+    'delete': {
+        value: 'delete',
+        type: 'delete'
     }
 };
 let numPadOptions = [7,8,9,"/", 4,5,6,"*", 1,2,3,"-",".",0,"=","+"]
@@ -145,11 +149,13 @@ const addEvents = () => {
                     clearAll();
                     break;
                 case "delete":
+                    deleteLast();
                     break;
                 case "equals":
                     getTotal();
                     break;
                 case 'operator':
+                    //if it's an op check to see if the num is empty if it is set it to 0
                     op = lastInput.value;
                     break;
                 case "number":
@@ -166,14 +172,6 @@ const addEvents = () => {
             displayInput();
         });
     });
-}
-
-const isOperator = (value) => {
-    if(value == "+" || value == "-" || value == "*" || value == "/") {
-        return true;
-    }
-    return false;
-
 }
 
 const getTotal = () => {
@@ -196,6 +194,11 @@ const displayInput = () => {
     inputDiv.innerHTML = text;
 }
 
+const displayTotal = (value) => {
+    let totalDiv = document.querySelector('.total');
+    totalDiv.innerHTML = value;
+}
+
 const clearAll = () => {
     lastInput = "";
     input = ""
@@ -206,10 +209,17 @@ const clearAll = () => {
     displayTotal(0)
 }
 
-const displayTotal = (value) => {
-    let totalDiv = document.querySelector('.total');
-    totalDiv.innerHTML = value;
+const deleteLast = () => {
+    //if there is already an operator then we delete from num2
+    if(op != null) {
+        num2 = num2.slice(0,-1);
+    }
+    else {
+        num1 = num1.slice(0,-1);
+    }
+    displayInput()
 }
+
 
 let lastInput = "";
 let input = ""
