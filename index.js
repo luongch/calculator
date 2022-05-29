@@ -163,10 +163,11 @@ function evaluateAction(button) {
                     else {
                         getTotal();
                     }
-                    
                     break;
                 case 'operator':
-                    //if it's an op check to see if the num is empty if it is set it to 0
+                    if(num1 === "") {
+                        num1 = 0;
+                    }
                     op = lastInput.value;
                     break;
                 case "number":
@@ -201,13 +202,13 @@ const getTotal = () => {
 const displayInput = () => {
     let inputDiv = document.querySelector(".input");
     let text = "";
-    if(num1 != "") {
+    if(num1 !== "") {
         text += num1;
     }
-    if(op != null) {
+    if(op !== null) {
         text += op;
     }
-    if(num2 != "") {
+    if(num2 !== "") {
         text += num2;
     }
     inputDiv.innerHTML = text;
