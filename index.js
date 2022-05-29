@@ -166,7 +166,7 @@ function evaluateAction(button) {
                     }
                     break;
                 case 'operator':
-                    if(isAllValuesEmpty()) {
+                    if(isAllValuesFilled()) {
                         getTotal();
                     }
                     if(num1 === "") {
@@ -191,7 +191,10 @@ function evaluateAction(button) {
 }
 
 const isAllValuesEmpty = () => {
-    return num1 !== "" && op !== null && num2 !== "";
+    return (num1 === "" && op === null && num2 === "");
+}
+const isAllValuesFilled = () => {
+    return (num1 !== "" && op !== null && num2 !== "");
 }
 const addDecimal = () => {
     //if there is an operator add to num2
