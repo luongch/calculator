@@ -196,7 +196,13 @@ const addEvents = () => {
 
 const getTotal = () => {
     total = operator(op,parseInt(num1),parseInt(num2));
-    displayTotal(total)
+    if(total == Infinity) {
+        displayTotal("Cannot divide by 0")
+    }
+    else {
+        displayTotal(total)
+    }
+    
 }
 
 const displayInput = () => {
