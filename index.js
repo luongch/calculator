@@ -118,6 +118,12 @@ const setupNumPad = () => {
         //add in the 4 inputs
         let input = document.createElement('button');
         input.classList.add('numPadOption');
+        if(numPadObjects[numPadOptions[i]].type == "operator") {
+            input.classList.add('operator')
+        }
+        if(numPadObjects[numPadOptions[i]].type == "equals") {
+            input.classList.add('equals')
+        }
         input.value = numPadOptions[i];
         input.textContent = numPadOptions[i];
         
@@ -230,3 +236,11 @@ let num2 = "";
 
 setupNumPad();
 addEvents();
+
+//todo list
+//if you only enter one number and press = it should give you num1
+//if you have num1 and an operator, when you press = it should give you num1
+//display message when trying to divide by 0
+//if you have num1, an operator, and num2, when you press another op it will do the calculation and then get it ready for the next operator
+//set up the decimal button
+//add keyboard support

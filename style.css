@@ -1,6 +1,7 @@
 html, body {
     margin: 0;
     height: 100%;
+    background-color: #121212;
 }
 body {
     display: flex;
@@ -12,7 +13,7 @@ body {
 .display {
     display: flex;
     flex-direction: column;
-    background-color: white;
+    background-color: #B3B3B3;
     width: 100%;
     height: 20%;
 }
@@ -45,7 +46,6 @@ body {
 }
 .row {
     display: flex;
-    background-color: green;
     flex-grow: 1;
 }
 .numPadOption{
@@ -60,7 +60,18 @@ body {
 }
 .clear>button, .delete>button {
     flex-grow:1;
+    background-color: rgb(109, 28, 28);
 }
 button {
     font-size: 32px;
+    background-color: #181818;
+    color: #B3B3B3;
+}
+
+.operator {
+    background-color:rgb(62, 134, 110);
+}
+
+.equals {
+    background-color: rgb(19, 57, 161);
 }
